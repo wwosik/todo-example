@@ -1,6 +1,10 @@
 <div class="container">
   <h1>Hello world!</h1>
 
+  <div class="spinner-border" role="status" *ngIf="isLoading">
+    <span class="sr-only">Loading...</span>
+  </div>
+
   <ul class="list-group">
     <li *ngFor="let todo of todos" class="list-group-item" [class.bg-secondary]="selectedTodo === todo"
       (click)="select(todo)" style="display: flex;">
