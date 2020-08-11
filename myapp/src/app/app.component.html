@@ -2,6 +2,20 @@
   <h1>Hello world!</h1>
 
   <ul class="list-group">
-    <li *ngFor="let todo of todos" class="list-group-item">{{ todo.text}}</li>
+    <li *ngFor="let todo of todos" class="list-group-item" [class.bg-secondary]="selectedTodo === todo"
+      (click)="select(todo)" style="display: flex;">
+      <div style="flex:1">{{ todo.text}}</div>
+      <button class="btn btn-danger" (click)="delete(todo)">Delete</button>
+    </li>
   </ul>
+
+  <div class="form-group" style="margin-top:2em">
+    <label for="exampleInputEmail1">Todo</label>
+    <input type="text" class="form-control" placeholder="Todo text" [formControl]="todoText">
+    <small id="emailHelp" class="form-text text-muted">This will be todo text</small>
+  </div>
+  <button class="btn btn-primary" [disabled]="!todoText.valid" (click)="save()">
+    {{ selectedTodo ? 'Update todo' : 'Save new todo' }}
+
+  </button>
 </div>
